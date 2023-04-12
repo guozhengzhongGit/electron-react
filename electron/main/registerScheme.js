@@ -40,7 +40,7 @@ export default class CustomScheme {
         pathName = "index.html";
         extension = ".html";
       }
-      let tarFile = path.join(__dirname, pathName);
+      let tarFile = path.join(__dirname, `../../${pathName}`);
       callback({
         statusCode: 200,
         headers: { "content-type": this.getMimeType(extension) },
