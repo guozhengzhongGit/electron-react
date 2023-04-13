@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
+import IconAccessibility from '~icons/carbon/accessibility'
 import Menu from './components/Menu';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -34,7 +35,7 @@ function App() {
             clipPath: isDark ? [...clipPath].reverse() : clipPath,
           },
           {
-            duration: 500,
+            duration: 300,
             easing: "ease-in",
             pseudoElement: isDark
               ? "::view-transition-old(root)"
@@ -47,7 +48,7 @@ function App() {
     <BrowserRouter >
     <div className="app">
         <div className='left-bar'>
-            <button onClick={toggleTheme}>切换主题</button>
+            <button onClick={toggleTheme}>切换主题   <IconAccessibility style={{ color: 'red' }}/></button>
         </div>
         <div className='right-content'>
         <Menu />

@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.1.16",
+    "@svgr/core": "^7.0.0",
+    "@svgr/plugin-jsx": "^7.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
@@ -20,6 +23,7 @@
     "vite-plugin-resolve": "^2.3.0"
   },
   "dependencies": {
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "unplugin-icons": "^0.16.1"
   }
 }

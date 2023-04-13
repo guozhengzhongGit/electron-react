@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import Icons from 'unplugin-icons/vite'
 import react from '@vitejs/plugin-react'
 import resolve from 'vite-plugin-resolve'
 import { viteDevPlugin } from './build/plugins/viteForElectronDevPlugin.js';
@@ -28,7 +29,7 @@ export default defineConfig({
   server: {
     host: '127.0.0.1'
   },
-  plugins: [viteDevPlugin(), resolve(transform2ESM()),react()],
+  plugins: [viteDevPlugin(), resolve(transform2ESM()),Icons({jsx: 'react',compiler: 'jsx', autoInstall: true}),react()],
   build: {
     target: ['chrome112'],
     rollupOptions: {
