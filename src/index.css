@@ -1,12 +1,21 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
+  --e-bg: #ffffff;
+  --e-text: #213547;
+  --e-scrollbar: #cccccc;
+  --e-scrollbar-hover: #999999
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,45 +23,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.dark {
+  --e-bg: #2a2b2d;
+  --e-text: rgba(255, 255, 255, 0.87);
+  --e-scrollbar: #5c5d61;
+  --e-scrollbar-hover: #8e9195
 }
 
 @media (prefers-color-scheme: light) {
@@ -66,4 +41,41 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #fff;
+    background-color: #333;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #777;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* 进入dark模式和退出dark模式时，两个图像的位置顺序正好相反 */
+.dark::view-transition-old(root) {
+  z-index: 1;
+}
+.dark::view-transition-new(root) {
+  z-index: 999;
+}
+
+::view-transition-old(root) {
+  z-index: 999;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+#root {
+  height: 100%;
 }
