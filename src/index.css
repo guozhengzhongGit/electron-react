@@ -1,58 +1,9 @@
+@import url('./theme/light.css');
 html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
-}
-
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
-  --e-bg: #ffffff;
-  --e-text: #213547;
-  --e-scrollbar: #cccccc;
-  --e-scrollbar-hover: #999999
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-.dark {
-  --e-bg: #2a2b2d;
-  --e-text: rgba(255, 255, 255, 0.87);
-  --e-scrollbar: #5c5d61;
-  --e-scrollbar-hover: #8e9195
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #fff;
-    background-color: #333;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #777;
-  }
 }
 
 ::view-transition-old(root),
@@ -62,10 +13,10 @@ body {
 }
 
 /* 进入dark模式和退出dark模式时，两个图像的位置顺序正好相反 */
-.dark::view-transition-old(root) {
+.theme-dark::view-transition-old(root) {
   z-index: 1;
 }
-.dark::view-transition-new(root) {
+.theme-dark::view-transition-new(root) {
   z-index: 999;
 }
 

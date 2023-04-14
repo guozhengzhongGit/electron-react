@@ -21,9 +21,9 @@ function App() {
 
     const transition = document.startViewTransition(() => {
         const root = document.documentElement;
-        isDark = root.classList.contains("dark");
-        root.classList.remove(isDark ? "dark" : "light");
-        root.classList.add(isDark ? "light" : "dark");
+        isDark = root.classList.contains("theme-dark");
+        root.classList.remove(isDark ? "theme-dark" : "theme-light");
+        root.classList.add(isDark ? "theme-light" : "theme-dark");
       });
       transition.ready.then(() => {
         const clipPath = [
