@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.16",
+    "@iconify-json/eos-icons": "^1.1.6",
+    "@iconify-json/logos": "^1.1.24",
     "@svgr/core": "^7.0.0",
     "@svgr/plugin-jsx": "^7.0.0",
     "@types/react": "^18.0.28",

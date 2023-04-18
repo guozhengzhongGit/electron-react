@@ -1,0 +1,78 @@
+:root {
+  --xes-doc-black: #000;
+  --xes-doc-white: #fff;
+  --xes-doc-gray-1: #f7f8fa;
+  --xes-doc-gray-2: #f2f3f5;
+  --xes-doc-gray-3: #ebedf0;
+  --xes-doc-gray-4: #dcdee0;
+  --xes-doc-gray-5: #c8c9cc;
+  --xes-doc-gray-6: #969799;
+  --xes-doc-gray-7: #646566;
+  --xes-doc-gray-8: #323233;
+  --xes-doc-blue: #1989fa;
+  --xes-doc-green: #07c160;
+  --xes-doc-purple: #8e69d3;
+  --xes-doc-padding: 32px;
+  --xes-doc-row-max-width: 1680px;
+  --xes-doc-nav-width: 220px;
+  --xes-doc-border-radius: 20px;
+  --xes-doc-simulator-width: 360px;
+  --xes-doc-simulator-height: 620px;
+  --xes-doc-header-top-height: 64px;
+  --xes-doc-code-font-family: "Menlo", "Source Code Pro", "Monaco", "Inconsolata", monospace
+}
+
+.theme-light {
+  --xes-doc-text-color-1: var(--xes-doc-black);
+  --xes-doc-text-color-2: var(--xes-doc-gray-8);
+  --xes-doc-text-color-3: #34495e;
+  --xes-doc-text-color-4: var(--xes-doc-gray-6);
+  --xes-doc-link-color: var(--xes-doc-blue);
+  --xes-doc-background: #eff2f5;
+  --xes-doc-background-2: var(--xes-doc-white);
+  --xes-doc-background-3: var(--xes-doc-white);
+  --xes-doc-header-background: #011f3c;
+  --xes-doc-border-color: var(--xes-doc-gray-2);
+  --xes-doc-code-color: #58727e;
+  --xes-doc-code-comment-color: var(--xes-doc-gray-6);
+  --xes-doc-code-background: var(--xes-doc-gray-1);
+  --xes-doc-blockquote-color: #2f85da;
+  --xes-doc-blockquote-background: #ecf9ff
+}
+
+.theme-dark {
+  --xes-doc-text-color-1: var(--xes-doc-white);
+  --xes-doc-text-color-2: rgba(255, 255, 255, .9);
+  --xes-doc-text-color-3: rgba(255, 255, 255, .75);
+  --xes-doc-text-color-4: rgba(255, 255, 255, .6);
+  --xes-doc-link-color: #1bb5fe;
+  --xes-doc-background: #202124;
+  --xes-doc-background-2: rgba(255, 255, 255, .06);
+  --xes-doc-background-3: rgba(255, 255, 255, .1);
+  --xes-doc-header-background: rgba(1, 31, 60, .3);
+  --xes-doc-border-color: #3a3a3c;
+  --xes-doc-code-color: rgba(200, 200, 200, .85);
+  --xes-doc-code-comment-color: var(--xes-doc-gray-7);
+  --xes-doc-code-background: rgba(0, 0, 0, .24);
+  --xes-doc-blockquote-color: #bae6fd;
+  --xes-doc-blockquote-background: rgba(7, 89, 133, .25)
+}
+
+p {
+  margin: 0
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+  font-size: inherit
+}
+
+ul,ol {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+a {
+  text-decoration: none
+}

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import IconAccessibility from '~icons/carbon/accessibility'
 import Menu from './components/Menu';
+import BottomInfoBar from './components/BottomBar/info.jsx';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -51,15 +52,15 @@ function App() {
             <button onClick={toggleTheme}>切换主题   <IconAccessibility style={{ color: 'red' }}/></button>
         </div>
         <div className='right-content'>
-        <Menu />
+           <Menu />
            <Routes>
            <Route element={<HomePage />}
                   path="/"
                   exact
               ></Route>
-              <Route element={<HomePage />}
+              {/* <Route element={<HomePage />}
                   path="/info"
-              ></Route>
+              ></Route> */}
               {/* <Route element={<List/>}
                   path="/list"
               ></Route>
@@ -75,6 +76,7 @@ function App() {
               </Route> */}
            </Routes>
         </div>
+        {/* <BottomInfoBar /> */}
     </div>
     </BrowserRouter>
   )

@@ -5,9 +5,7 @@ const Home = () => {
   return (
     <div>
       <h1>Home Page
-
       </h1>
-      <p>app is using Chrome { chromeVersion }, Node { nodeVersion }, Electron { electronVersion }</p>
     </div>
   );
 }
