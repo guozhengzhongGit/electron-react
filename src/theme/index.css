@@ -1,61 +1,74 @@
 :root {
-  --xes-doc-black: #000;
-  --xes-doc-white: #fff;
-  --xes-doc-gray-1: #f7f8fa;
-  --xes-doc-gray-2: #f2f3f5;
-  --xes-doc-gray-3: #ebedf0;
-  --xes-doc-gray-4: #dcdee0;
-  --xes-doc-gray-5: #c8c9cc;
-  --xes-doc-gray-6: #969799;
-  --xes-doc-gray-7: #646566;
-  --xes-doc-gray-8: #323233;
-  --xes-doc-blue: #1989fa;
-  --xes-doc-green: #07c160;
-  --xes-doc-purple: #8e69d3;
-  --xes-doc-padding: 32px;
-  --xes-doc-row-max-width: 1680px;
-  --xes-doc-nav-width: 220px;
-  --xes-doc-border-radius: 20px;
-  --xes-doc-simulator-width: 360px;
-  --xes-doc-simulator-height: 620px;
-  --xes-doc-header-top-height: 64px;
-  --xes-doc-code-font-family: "Menlo", "Source Code Pro", "Monaco", "Inconsolata", monospace
+  --primary-color: #e8684a;
+  --primary-color-4: #f59176;
+  --primary-color-3: #ffbaa3;
+  --primary-color-2: #ffdacc;
+  --primary-color-6: #c24a34;
+  --primary-color-7: #9c3022;
+  --primary-color-8: #751c14;
+  --primary-color-9: #4f100d;
+  --primary-color-light: #fff5f0;
+  --xes-background: #eff2f5;
+  --xes-border-radius-2: 2px;
+  --xes-border-radius-4: 4px;
+  --xes-border-radius-6: 6px;
+  --xes-black: #000;
+  --xes-white: #fff;
+  --xes-gray-1: #f7f8fa;
+  --xes-gray-2: #f2f3f5;
+  --xes-gray-3: #ebedf0;
+  --xes-gray-4: #dcdee0;
+  --xes-gray-5: #c8c9cc;
+  --xes-gray-6: #969799;
+  --xes-gray-7: #646566;
+  --xes-gray-8: #323233;
+  --xes-blue: #1989fa;
+  --xes-green: #07c160;
+  --xes-purple: #8e69d3;
+  --xes-padding: 32px;
+  --xes-row-max-width: 1680px;
+  --xes-nav-width: 220px;
+  --xes-border-radius: 20px;
+  --xes-simulator-width: 360px;
+  --xes-simulator-height: 620px;
+  --xes-header-top-height: 64px;
+  --xes-code-font-family: "Menlo", "Source Code Pro", "Monaco", "Inconsolata", monospace
 }
 
 .theme-light {
-  --xes-doc-text-color-1: var(--xes-doc-black);
-  --xes-doc-text-color-2: var(--xes-doc-gray-8);
-  --xes-doc-text-color-3: #34495e;
-  --xes-doc-text-color-4: var(--xes-doc-gray-6);
-  --xes-doc-link-color: var(--xes-doc-blue);
-  --xes-doc-background: #eff2f5;
-  --xes-doc-background-2: var(--xes-doc-white);
-  --xes-doc-background-3: var(--xes-doc-white);
-  --xes-doc-header-background: #011f3c;
-  --xes-doc-border-color: var(--xes-doc-gray-2);
-  --xes-doc-code-color: #58727e;
-  --xes-doc-code-comment-color: var(--xes-doc-gray-6);
-  --xes-doc-code-background: var(--xes-doc-gray-1);
-  --xes-doc-blockquote-color: #2f85da;
-  --xes-doc-blockquote-background: #ecf9ff
+  --xes-text-color-1: var(--xes-black);
+  --xes-text-color-2: var(--xes-gray-8);
+  --xes-text-color-3: #34495e;
+  --xes-text-color-4: var(--xes-gray-6);
+  --xes-link-color: var(--xes-blue);
+  --xes-background: #eff2f5;
+  --xes-background-2: var(--xes-white);
+  --xes-background-3: var(--xes-white);
+  --xes-header-background: #011f3c;
+  --xes-border-color: var(--xes-gray-2);
+  --xes-code-color: #58727e;
+  --xes-code-comment-color: var(--xes-gray-6);
+  --xes-code-background: var(--xes-gray-1);
+  --xes-blockquote-color: #2f85da;
+  --xes-blockquote-background: #ecf9ff
 }
 
 .theme-dark {
-  --xes-doc-text-color-1: var(--xes-doc-white);
-  --xes-doc-text-color-2: rgba(255, 255, 255, .9);
-  --xes-doc-text-color-3: rgba(255, 255, 255, .75);
-  --xes-doc-text-color-4: rgba(255, 255, 255, .6);
-  --xes-doc-link-color: #1bb5fe;
-  --xes-doc-background: #202124;
-  --xes-doc-background-2: rgba(255, 255, 255, .06);
-  --xes-doc-background-3: rgba(255, 255, 255, .1);
-  --xes-doc-header-background: rgba(1, 31, 60, .3);
-  --xes-doc-border-color: #3a3a3c;
-  --xes-doc-code-color: rgba(200, 200, 200, .85);
-  --xes-doc-code-comment-color: var(--xes-doc-gray-7);
-  --xes-doc-code-background: rgba(0, 0, 0, .24);
-  --xes-doc-blockquote-color: #bae6fd;
-  --xes-doc-blockquote-background: rgba(7, 89, 133, .25)
+  --xes-text-color-1: var(--xes-white);
+  --xes-text-color-2: rgba(255, 255, 255, .9);
+  --xes-text-color-3: rgba(255, 255, 255, .75);
+  --xes-text-color-4: rgba(255, 255, 255, .6);
+  --xes-link-color: #1bb5fe;
+  --xes-background: #202124;
+  --xes-background-2: rgba(255, 255, 255, .06);
+  --xes-background-3: rgba(255, 255, 255, .1);
+  --xes-header-background: rgba(1, 31, 60, .3);
+  --xes-border-color: #3a3a3c;
+  --xes-code-color: rgba(200, 200, 200, .85);
+  --xes-code-comment-color: var(--xes-gray-7);
+  --xes-code-background: rgba(0, 0, 0, .24);
+  --xes-blockquote-color: #bae6fd;
+  --xes-blockquote-background: rgba(7, 89, 133, .25)
 }
 
 p {
