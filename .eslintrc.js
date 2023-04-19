@@ -1,5 +1,8 @@
 module.exports = {
   root: true,
+  globals: {
+    versions: 'writable'
+  },
   env: {
     browser: true,
     es2021: true,
