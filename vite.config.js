@@ -3,6 +3,7 @@ import Icons from 'unplugin-icons/vite';
 import react from '@vitejs/plugin-react-swc';
 import eslint from 'vite-plugin-eslint';
 import resolve from 'vite-plugin-resolve';
+import copy from 'rollup-plugin-copy';
 import { viteDevPlugin } from './build/plugins/viteForElectronDevPlugin.js';
 import { viteProPlugin } from './build/plugins/viteForElectronProPlugin.js';
 
@@ -51,6 +52,16 @@ export default defineConfig({
     resolve(transform2ESM()),
     Icons({ jsx: 'react', compiler: 'jsx', autoInstall: true }),
     react(),
+    copy({
+      targets: [
+        {
+          src: 'node_modules/@mxsir/image-tiny/dist/pngtiny-custom.wasm',
+          dest: 'dist'
+        }
+      ],
+      verbose: true,
+      hook: 'writeBundle'
+    }),
     eslint()
   ],
   build: {

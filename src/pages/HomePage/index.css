@@ -1,0 +1,37 @@
+.image-tiny-outer {
+  padding: 6px;
+  color: var(--primary-color);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  & .antd-uploader-component {
+    height: auto;
+  }
+  & .quality-picker {
+    height: auto;
+    display: flex;
+    margin-top: 10px;
+    & .label {
+      width: auto;
+      font-size: 14px;
+      margin-right: 10px;
+      padding-top: 12px;
+    }
+    & .quality-form-outer {
+      flex: 1;
+      padding-right: 14px;
+    }
+  }
+  & .action-bar {
+    height: auto;
+    margin-top: 10px;
+    display: flex;
+  }
+  & .img-list-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
