@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { ipcRenderer } from 'electron';
 import imageTiny from '@mxsir/image-tiny';
 import {
   InboxOutlined,
@@ -10,7 +11,6 @@ import { getSizeTrans } from '../../utils/fileSize';
 import './index.css';
 
 const { Dragger } = Upload;
-
 const qualityStep = {
   20: '20%',
   40: '40%',
@@ -27,6 +27,10 @@ const Home = () => {
   const [quality, setQuality] = useState(80);
   const [showPicList, setShowPicList] = useState([]);
   const [originFileList, setOriginFileList] = useState([]);
+  const [savePath, setSavePath] = useState('');
+  useEffect(() => {
+    getDefaultSavePath();
+  }, []);
   // const chromeVersion = versions.chrome();
   // const nodeVersion = versions.node();
   // const electronVersion = versions.electron();
@@ -39,6 +43,11 @@ const Home = () => {
   //   });
   //   setOriginFileList(_res);
   // };
+
+  const getDefaultSavePath = async () => {
+    const path = await ipcRenderer.invoke('path:get-default-save-path');
+    setSavePath(path);
+  };
   const handleDrop = (event) => {
     event.stopPropagation();
     event.preventDefault();
@@ -132,6 +141,13 @@ const Home = () => {
       </Row>
     );
   };
+  const changeSaveDir = async () => {
+    const dir = await ipcRenderer.invoke('dialog:change-save-dir');
+    console.log(dir);
+    if (dir) {
+      setSavePath(dir);
+    }
+  };
   return (
     <div className="image-tiny-outer">
       <Dragger
@@ -160,6 +176,7 @@ const Home = () => {
       </div>
       <div className="action-bar">
         <Button
+          onClick={changeSaveDir}
           type="primary"
           ghost
           icon={<DownloadOutlined />}
@@ -167,7 +184,7 @@ const Home = () => {
         >
           图片存储到...
         </Button>
-        <Input readOnly />
+        <Input readOnly value={savePath} />
         <Button
           type="primary"
           style={{ marginLeft: 15 }}

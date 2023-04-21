@@ -1,10 +1,17 @@
-import { app, BrowserWindow } from 'electron';
-// import path from 'path';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { showDialog2PickSavePath } from '../utils/dialog-pick-save-path';
 // import { projectRoot } from '../utils';
 import CustomScheme from './registerScheme';
 let mainWindow;
 
+function changeSaveDir(a, b) {
+  const res = showDialog2PickSavePath();
+  return res;
+}
+
 app.whenReady().then(() => {
+  ipcMain.handle('dialog:change-save-dir', changeSaveDir);
+  ipcMain.handle('path:get-default-save-path', () => app.getPath('desktop'));
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
