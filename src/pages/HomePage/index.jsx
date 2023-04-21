@@ -1,13 +1,15 @@
-import { useState } from 'react';
-// import imageTiny from '@mxsir/image-tiny';
+import { useState, useRef } from 'react';
+import imageTiny from '@mxsir/image-tiny';
 import {
   InboxOutlined,
   DownloadOutlined,
   FileZipOutlined
 } from '@ant-design/icons';
-import { Upload, Slider, Button, Input, Empty } from 'antd';
-const { Dragger } = Upload;
+import { Slider, Button, Input, Empty, Upload, Row, Col } from 'antd';
+import { getSizeTrans } from '../../utils/fileSize';
 import './index.css';
+
+const { Dragger } = Upload;
 
 const qualityStep = {
   20: '20%',
@@ -19,46 +21,126 @@ const qualityStep = {
   },
   100: '100%'
 };
+let count = 0;
 const Home = () => {
+  const fileListRef = useRef([]);
   const [quality, setQuality] = useState(80);
+  const [showPicList, setShowPicList] = useState([]);
   const [originFileList, setOriginFileList] = useState([]);
   // const chromeVersion = versions.chrome();
   // const nodeVersion = versions.node();
   // const electronVersion = versions.electron();
-  const handleChange = (data) => {
-    const { fileList } = data;
-    if (!fileList.length) return;
-    const _res = fileList.map((obj) => {
-      const { originFileObj } = obj;
-      return originFileObj;
-    });
-    setOriginFileList(_res);
-  };
-  const handleDrop = (e) => {
-    console.log(e);
+  // const handleChange = (data) => {
+  //   const { fileList } = data;
+  //   if (!fileList.length) return;
+  //   const _res = fileList.map((obj) => {
+  //     const { originFileObj } = obj;
+  //     return originFileObj;
+  //   });
+  //   setOriginFileList(_res);
+  // };
+  const handleDrop = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    const files = event.dataTransfer?.files;
+    console.log(files);
+    const arr = [];
+    for (const f of files) {
+      console.log(f);
+      arr.push(f);
+    }
   };
   const onChangeQuality = (number) => {
-    console.log(number);
     setQuality(number);
   };
-  const onCompressImage = async () => {
-    // imageTiny();
-    // const res = await imageTiny(originFileList, quality);
-    console.log(originFileList);
+  const onCompressImage = () => {
+    originFileList.forEach((file) => {
+      asyncCompressImage(file);
+    });
+  };
+  const asyncCompressImage = async (file) => {
+    const { uid } = file;
+    try {
+      const tinyFile = await imageTiny(file, quality);
+      count++;
+      console.log('tinyFile', tinyFile);
+      const rate =
+        ((((file.size - tinyFile.size) * 100) / file.size) | 0) + '%';
+      const imgInfo = {
+        ...file,
+        uid,
+        name: file.name,
+        beforeSize: getSizeTrans(file.size),
+        data: tinyFile,
+        compressStatusText: '已压缩',
+        compressStatus: 'done',
+        afterSize: getSizeTrans(tinyFile.size),
+        rate,
+        url: null
+      };
+      fileListRef.current.push(imgInfo);
+    } catch (error) {
+      count++;
+      console.error(error);
+    } finally {
+      if (count === originFileList.length) {
+        console.log('全部压缩完成', fileListRef.current);
+        const newShowPicList = showPicList.map((item) => {
+          const _item = fileListRef.current.find((i) => i.uid === item.uid);
+          if (_item) return _item;
+          return item;
+        });
+        setShowPicList(newShowPicList);
+        setOriginFileList([]);
+        count = 0;
+        fileListRef.current = [];
+      }
+    }
+  };
+  const onBeforeUpload = (file) => {
+    // 都是新上传的图片
+    console.log(file);
+    const fileItem = {
+      ...file,
+      name: file.name,
+      beforeSize: getSizeTrans(file.size),
+      data: null,
+      compressStatusText: '待压缩',
+      compressStatus: 'ing',
+      afterSize: null,
+      rate: null,
+      url: null
+    };
+    setShowPicList((prev) => [...prev, fileItem]);
+    setOriginFileList((prev) => [...prev, file]);
+    return false;
+  };
+  const renderListItem = (item) => {
+    console.log(item);
+    return (
+      <Row key={item.uid} gutter={0} className="img-row" align="middle">
+        <Col span={6} className="file-name">
+          {item.name}
+        </Col>
+        <Col span={4}>{item.statusText}</Col>
+        <Col span={4}>{item.beforeSize}</Col>
+        <Col span={4}>{item.afterSize}</Col>
+        <Col span={4}>{item.rate}</Col>
+        <Col span={2} className="save-btn">
+          保存
+        </Col>
+      </Row>
+    );
   };
   return (
     <div className="image-tiny-outer">
-      {/* <h1>
-        页面1 此应用版本为: chrome：{chromeVersion} Node: {nodeVersion}{' '}
-        Electron: {electronVersion}
-      </h1> */}
       <Dragger
+        fileList={null}
+        accept="png,jpg,jpeg,gif"
         multiple={true}
-        accept=".jpg, .jpeg, .png, .gif"
-        className="antd-uploader-component"
-        showUploadList={false}
-        onChange={handleChange}
+        beforeUpload={onBeforeUpload}
         onDrop={handleDrop}
+        className="antd-uploader-component"
       >
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
@@ -95,9 +177,27 @@ const Home = () => {
           开始压缩
         </Button>
       </div>
-      <div className="img-list-empty">
-        <Empty />
-      </div>
+      {showPicList.length > 0 ? (
+        <div className="img-list-outer">
+          <Row gutter={0} className="table-header" align="middle">
+            <Col span={6} style={{ textIndent: 8 }}>
+              文件名称
+            </Col>
+            <Col span={4}>状态</Col>
+            <Col span={4}>压缩前</Col>
+            <Col span={4}>压缩后</Col>
+            <Col span={4}>压缩率</Col>
+            <Col span={2}>操作</Col>
+          </Row>
+          <div className="table-body">
+            {showPicList.map((item) => renderListItem(item))}
+          </div>
+        </div>
+      ) : (
+        <div className="img-list-empty">
+          <Empty />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,13 +1,16 @@
-import { app, BrowserWindow } from "electron";
-import path from 'path';
-import { projectRoot } from '../utils';
-import  CustomScheme from './registerScheme';
+import { app, BrowserWindow } from 'electron';
+// import path from 'path';
+// import { projectRoot } from '../utils';
+import CustomScheme from './registerScheme';
 let mainWindow;
 
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     webPreferences: {
-      preload: path.join(__dirname, '../preload/index.js'),
+      nodeIntegration: true,
+      webSecurity: false,
+      contextIsolation: false
+      // preload: path.join(__dirname, '../preload/index.js'),
     }
   });
   if (process.argv[2]) {

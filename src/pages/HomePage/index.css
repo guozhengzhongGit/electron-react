@@ -7,6 +7,8 @@
   height: 100%;
   & .antd-uploader-component {
     height: auto;
+    padding: 20px;
+    background: var(--xes-gray-4);
   }
   & .quality-picker {
     height: auto;
@@ -33,5 +35,39 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  & .img-list-outer {
+    margin-top: 10px;
+    flex: 1;
+    background: var(--xes-gray-6);
+    & .table-header {
+      padding: 12px 6px;
+      background: var(--xes-gray-8);
+      font-size: 14px;
+      font-weight: bold;
+    }
+    & .table-body {
+      margin-top: 6px;
+      color: var(--xes-text-color-3);
+      & .img-row {
+        margin: 0 6px 4px;
+        background: var(--xes-gray-2);
+        padding: 12px 0;
+        border-radius: var(--xes-border-radius-4);
+        & .file-name {
+          padding: 0 6px;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        & .save-btn {
+          cursor: pointer;
+        }
+        & .save-btn:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
   }
 }

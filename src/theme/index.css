@@ -1,4 +1,5 @@
 :root {
+  --xes-text-color-3: #34495e;
   --primary-color: #e8684a;
   --primary-color-4: #f59176;
   --primary-color-3: #ffbaa3;
@@ -32,7 +33,8 @@
   --xes-simulator-width: 360px;
   --xes-simulator-height: 620px;
   --xes-header-top-height: 64px;
-  --xes-code-font-family: "Menlo", "Source Code Pro", "Monaco", "Inconsolata", monospace
+  --xes-code-font-family: 'Menlo', 'Source Code Pro', 'Monaco', 'Inconsolata',
+    monospace;
 }
 
 .theme-light {
@@ -50,42 +52,48 @@
   --xes-code-comment-color: var(--xes-gray-6);
   --xes-code-background: var(--xes-gray-1);
   --xes-blockquote-color: #2f85da;
-  --xes-blockquote-background: #ecf9ff
+  --xes-blockquote-background: #ecf9ff;
 }
 
 .theme-dark {
   --xes-text-color-1: var(--xes-white);
-  --xes-text-color-2: rgba(255, 255, 255, .9);
-  --xes-text-color-3: rgba(255, 255, 255, .75);
-  --xes-text-color-4: rgba(255, 255, 255, .6);
+  --xes-text-color-2: rgba(255, 255, 255, 0.9);
+  --xes-text-color-3: rgba(255, 255, 255, 0.75);
+  --xes-text-color-4: rgba(255, 255, 255, 0.6);
   --xes-link-color: #1bb5fe;
   --xes-background: #202124;
-  --xes-background-2: rgba(255, 255, 255, .06);
-  --xes-background-3: rgba(255, 255, 255, .1);
-  --xes-header-background: rgba(1, 31, 60, .3);
+  --xes-background-2: rgba(255, 255, 255, 0.06);
+  --xes-background-3: rgba(255, 255, 255, 0.1);
+  --xes-header-background: rgba(1, 31, 60, 0.3);
   --xes-border-color: #3a3a3c;
-  --xes-code-color: rgba(200, 200, 200, .85);
+  --xes-code-color: rgba(200, 200, 200, 0.85);
   --xes-code-comment-color: var(--xes-gray-7);
-  --xes-code-background: rgba(0, 0, 0, .24);
+  --xes-code-background: rgba(0, 0, 0, 0.24);
   --xes-blockquote-color: #bae6fd;
-  --xes-blockquote-background: rgba(7, 89, 133, .25)
+  --xes-blockquote-background: rgba(7, 89, 133, 0.25);
 }
 
 p {
-  margin: 0
-}
-
-h1,h2,h3,h4,h5,h6 {
   margin: 0;
-  font-size: inherit
 }
 
-ul,ol {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+}
+
+ul,
+ol {
   margin: 0;
   padding: 0;
-  list-style: none
+  list-style: none;
 }
 
 a {
-  text-decoration: none
+  text-decoration: none;
 }
