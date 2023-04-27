@@ -1,12 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
+import fs from 'fs';
 import imageTiny from '@mxsir/image-tiny';
 import {
   InboxOutlined,
   DownloadOutlined,
   FileZipOutlined
 } from '@ant-design/icons';
-import { Slider, Button, Input, Empty, Upload, Row, Col } from 'antd';
+import {
+  Slider,
+  Button,
+  Input,
+  Empty,
+  Upload,
+  Row,
+  Col,
+  notification
+} from 'antd';
 import { getSizeTrans } from '../../utils/fileSize';
 import './index.css';
 
@@ -28,6 +38,7 @@ const Home = () => {
   const [showPicList, setShowPicList] = useState([]);
   const [originFileList, setOriginFileList] = useState([]);
   const [savePath, setSavePath] = useState('');
+  const [api, contextHolder] = notification.useNotification();
   useEffect(() => {
     getDefaultSavePath();
   }, []);
@@ -60,6 +71,7 @@ const Home = () => {
     }
   };
   const onChangeQuality = (number) => {
+    console.log(number);
     setQuality(number);
   };
   const onCompressImage = () => {
@@ -70,6 +82,7 @@ const Home = () => {
   const asyncCompressImage = async (file) => {
     const { uid } = file;
     try {
+      console.log(file, quality);
       const tinyFile = await imageTiny(file, quality);
       count++;
       console.log('tinyFile', tinyFile);
@@ -124,6 +137,24 @@ const Home = () => {
     setOriginFileList((prev) => [...prev, file]);
     return false;
   };
+  const singleSave = (item) => {
+    console.log(item);
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(item.data);
+    reader.onload = function (e) {
+      const fileU8A = new Uint8Array(e.target.result);
+      fs.writeFile(`${savePath}/compress_${item.name}`, fileU8A, (err) => {
+        if (err) {
+          console.log('err', err);
+        } else {
+          api.success({
+            message: '保存成功',
+            description: '图片已保存到指定目录：' + savePath
+          });
+        }
+      });
+    };
+  };
   const renderListItem = (item) => {
     console.log(item);
     return (
@@ -135,7 +166,7 @@ const Home = () => {
         <Col span={4}>{item.beforeSize}</Col>
         <Col span={4}>{item.afterSize}</Col>
         <Col span={4}>{item.rate}</Col>
-        <Col span={2} className="save-btn">
+        <Col span={2} className="save-btn" onClick={() => singleSave(item)}>
           保存
         </Col>
       </Row>
@@ -150,6 +181,7 @@ const Home = () => {
   };
   return (
     <div className="image-tiny-outer">
+      {contextHolder}
       <Dragger
         fileList={null}
         accept="png,jpg,jpeg,gif"
