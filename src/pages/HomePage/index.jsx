@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
+import JSZip from 'jszip';
 import fs from 'fs';
 import imageTiny from '@mxsir/image-tiny';
 import {
@@ -179,6 +180,36 @@ const Home = () => {
       setSavePath(dir);
     }
   };
+  const handleDownloadAll = async () => {
+    console.log(showPicList);
+    const _list = showPicList.filter((item) => item.data);
+    if (!_list.length) return;
+    const zip = new JSZip();
+    _list.forEach((item) => {
+      zip.file(item.name, item.data);
+    });
+    zip.generateAsync({ type: 'blob' }).then((content) => {
+      const file = new FileReader();
+      file.readAsArrayBuffer(content);
+      file.onload = (e) => {
+        const fileU8A = new Uint8Array(e.target.result);
+        fs.writeFile(
+          `${savePath}/compress_img${new Date().getTime()}.zip`,
+          fileU8A,
+          (err) => {
+            if (err) {
+              console.log('err', err);
+            } else {
+              api.success({
+                message: '保存成功',
+                description: '图片zip包已保存到指定目录：' + savePath
+              });
+            }
+          }
+        );
+      };
+    });
+  };
   return (
     <div className="image-tiny-outer">
       {contextHolder}
@@ -240,6 +271,11 @@ const Home = () => {
           </Row>
           <div className="table-body">
             {showPicList.map((item) => renderListItem(item))}
+          </div>
+          <div className="bottom-actions">
+            <div className="action" onClick={handleDownloadAll}>
+              一键打包
+            </div>
           </div>
         </div>
       ) : (

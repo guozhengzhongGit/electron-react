@@ -1,10 +1,11 @@
 .image-tiny-outer {
-  padding: 6px;
+  position: relative;
+  margin: 6px;
   color: var(--primary-color);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100vh - 12px);
   & .antd-uploader-component {
     height: auto;
     background: var(--xes-gray-4);
@@ -46,6 +47,9 @@
       font-weight: bold;
     }
     & .table-body {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: calc(100vh - 335px);
       margin-top: 6px;
       color: var(--xes-text-color-3);
       & .img-row {
@@ -67,6 +71,21 @@
           color: var(--primary-color);
         }
       }
+    }
+  }
+  .bottom-actions {
+    width: 100%;
+    padding: 8px 16px 8px;
+    background: var(--xes-gray-8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    & .action {
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--primary-color);
     }
   }
 }
