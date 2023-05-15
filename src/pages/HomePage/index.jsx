@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
 import JSZip from 'jszip';
+import dayjs from 'dayjs';
 import fs from 'fs';
 import imageTiny from '@mxsir/image-tiny';
 import {
@@ -190,23 +191,20 @@ const Home = () => {
     });
     zip.generateAsync({ type: 'blob' }).then((content) => {
       const file = new FileReader();
+      const now = dayjs().format('YYYY-MM-DD HH-mm');
       file.readAsArrayBuffer(content);
       file.onload = (e) => {
         const fileU8A = new Uint8Array(e.target.result);
-        fs.writeFile(
-          `${savePath}/compress_img${new Date().getTime()}.zip`,
-          fileU8A,
-          (err) => {
-            if (err) {
-              console.log('err', err);
-            } else {
-              api.success({
-                message: '保存成功',
-                description: '图片zip包已保存到指定目录：' + savePath
-              });
-            }
+        fs.writeFile(`${savePath}/compress_img_${now}.zip`, fileU8A, (err) => {
+          if (err) {
+            console.log('err', err);
+          } else {
+            api.success({
+              message: '保存成功',
+              description: '图片zip包已保存到指定目录：' + savePath
+            });
           }
-        );
+        });
       };
     });
   };
