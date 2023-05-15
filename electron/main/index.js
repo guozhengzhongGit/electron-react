@@ -26,6 +26,6 @@ app.whenReady().then(() => {
   } else {
     CustomScheme.registerScheme();
     mainWindow.loadURL('electron-react://index.html');
-    mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    // mainWindow.webContents.openDevTools({ mode: 'undocked' });
   }
 });
