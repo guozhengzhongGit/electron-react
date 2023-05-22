@@ -43,6 +43,7 @@ const Home = () => {
   const [api, contextHolder] = notification.useNotification();
   useEffect(() => {
     getDefaultSavePath();
+    ipcRenderer.send('update:checkForUpdate');
   }, []);
   // const chromeVersion = versions.chrome();
   // const nodeVersion = versions.node();

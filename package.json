@@ -1,7 +1,7 @@
 {
   "name": "electron-react",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.10.0",
   "description": "A react electron project",
   "scripts": {
     "start": "vite",
@@ -41,6 +41,7 @@
     "@mxsir/image-tiny": "^0.1.0",
     "antd": "^5.4.2",
     "dayjs": "^1.11.7",
+    "electron-updater": "^5.3.0",
     "jszip": "^3.10.1",
     "react-router-dom": "^6.10.0",
     "unplugin-icons": "^0.16.1"
