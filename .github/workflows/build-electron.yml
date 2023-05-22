@@ -1,0 +1,44 @@
+name: build electron app
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  release:
+    name: build and release electron app
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+
+    steps:
+    - name: Check out git repository
+    - uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+        
+    - name: Install Dependencies
+      run: npm install --registry=https://registry.npmmirror.com
+      
+    - name: Build Electron App
+      run: npm run build
+      
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: ${{ matrix.os }}
+        path: release
+
+    - name: release
+      uses: softprops/action-gh-release@v0.1.14
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: "release"
