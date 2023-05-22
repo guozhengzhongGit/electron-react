@@ -67,7 +67,12 @@ export default class BuildObject {
             NSCameraUsageDescription: 'Let me use the camera.',
             NSScreenCaptureDescription: 'Let me take screenshots.'
           }
-        }
+        },
+        publish: [{
+          provider: 'github',
+          owner: 'guozhengzhonggit',
+          repo: 'electron-react',
+        }]
       },
       project: process.cwd()
     };
